@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Map</title>
+    <style>
+        #map {
+            height: 500px;
+            width: 100%;
+        }
+    </style>
+    <!-- Include TomTom Map SDK -->
+    <script type="text/javascript" src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.13.0/maps/maps-web.min.js"></script>
+    <link rel="stylesheet" href="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.13.0/maps/maps-web.min.css">
+</head>
+<body>
+    <h1>Map for {{ location }}</h1>
+    <div id="map"></div>
+
+    <script>
+        // Initialize the map with TomTom API
+        var map = tomtom.L.map('map', {
+            key: 'YOUR_TOMTOM_API_KEY', // Replace with your TomTom API key
+            center: [{{ latitude }}, {{ longitude }}],
+            zoom: 10
+        });
+
+        // Add marker at the location
+        var marker = tomtom.L.marker([{{ latitude }}, {{ longitude }}]).addTo(map)
+            .bindPopup('Location: {{ location }}')
+            .openPopup();
+    </script>
+</body>
+</html>
