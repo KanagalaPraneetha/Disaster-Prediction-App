@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Disaster Prediction</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <style>
+        #map { height: 600px; }
+    </style>
+</head>
+<body>
+    <h1>Disaster Prediction</h1>
+    
+    <form action="/predict" method="POST">
+        <input type="text" name="location" placeholder="Enter location" required>
+        <button type="submit">Predict</button>
+    </form>
+    
+    {% if result %}
+        <h2>Result: {{ result }}</h2>
+        {% if weather %}
+            <p>Temperature: {{ weather.main.temp }} °C</p>
+            <p>Humidity: {{ weather.main.humidity }} %</p>
+            <p>Wind Speed: {{ weather.wind.speed }} m/s</p>
+        {% endif %}
+    {% endif %}
+    
+    {% if error %}
+        <h2 style="color: red;">Error: {{ error }}</h2>
+    {% endif %}
+
+    {% if lat and lon %}
+        <h1>Map for {{ location }}</h1>
+        <div id="map"></div>
+        <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+        <script>
+            var map = L.map('map').setView([{{ lat }}, {{ lon }}], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '© OpenStreetMap'
+            }).addTo(map);
+            L.marker([{{ lat }}, {{ lon }}]).addTo(map)
+                .bindPopup('{{ location }}')
+                .openPopup();
+        </script>
+    {% endif %}
+</body>
+</html>
