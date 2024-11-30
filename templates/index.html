@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="static/style.css">
+    <title>Disaster Prediction</title>
+    <script src="https://api.tomtom.com/maps-sdk-for-web/cdn/6.x/6.16.0/maps/maps-web.min.js"></script> <!-- TomTom JS API -->
+</head>
+<body>
+    <div class="container">
+        <h1>Disaster Prediction</h1>
+        
+        <form action="/predict" method="POST">
+            <label for="location">Enter Location:</label>
+            <input type="text" id="location" name="location" required>
+            <button type="submit">Predict</button>
+        </form>
+
+        {% if error %}
+            <p class="error">{{ error }}</p>
+        {% endif %}
+
+        {% if location %}
+            <h2>Prediction Result for {{ location }}</h2>
+            <p>{{ result }}</p>
+
+            <h3>Weather Details:</h3>
+            <ul>
+                <li>Temperature: {{ weather.main.temp }} °C</li>
+                <li>Humidity: {{ weather.main.humidity }} %</li>
+                <li>Wind Speed: {{ weather.wind.speed }} km/h</li>
+            </ul>
+
+            <h3>View Location on Map:</h3>
+            <!-- Map Container -->
+            <div id="map"></div>
+
+            <script>
+                var map = tomtom.L.map('map', {
+                    key: 'f6693714-24b0-4ed6-b1cc-07b2ad279a3b',  // Replace with your TomTom API key
+                    center: [{{ weather.coord.lat }}, {{ weather.coord.lon }}], // Latitude and Longitude from weather API
+                    zoom: 10
+                });
+
+                // Add a marker at the location
+                tomtom.L.marker([{{ weather.coord.lat }}, {{ weather.coord.lon }}]).addTo(map)
+                    .bindPopup("Location: {{ location }}")
+                    .openPopup();
+            </script>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,21 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Full height of the viewport */
+    margin: 0;
+    background-color: #f0f0f0; /* Optional: Add a background color */
+}
+.map-container {
+    width: 80%; /* Set the width of the container */
+    max-width: 800px; /* Optional: Set a maximum width */
+    height: 600px; /* Set the height of the map */
+    border: 2px solid #ccc; /* Optional: Add a border */
+    border-radius: 8px; /* Optional: Add rounded corners */
+    overflow: hidden; /* Hide overflow */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Optional: Add a shadow */
+}
+#map {
+    height: 70%; /* Full height of the container */
+    width: 70%; /* Full width of the container */
+}
