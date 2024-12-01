@@ -13,7 +13,12 @@ Use the  python virtualenv
 Run Python the train_model.py to note the accuracy of our application after several tests done. 
 
 ## Application Screenshots
-
+### Landing page
+![disaster-screen1](https://github.com/user-attachments/assets/cf4b56a4-52df-4430-bfd2-73a1e54f8a8c)
+### Nairobi Model
+![disaster-screen3](https://github.com/user-attachments/assets/db79d22e-fb1c-424a-9552-70077c3d2cb5)
+### Madrid Model
+![disaster-screen2](https://github.com/user-attachments/assets/7f8a6718-638a-432d-a7cd-a84dbdc3e097)
 
 ## Contributing
 
