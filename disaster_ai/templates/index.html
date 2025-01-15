@@ -12,12 +12,12 @@
 </head>
 <body>
     <h1>Disaster Prediction</h1>
-    
+
     <form action="/predict" method="POST">
         <input type="text" name="location" placeholder="Enter location" required>
-        <button type="submit">Predict</button>
+        <button class="hello" type="submit">Predict</button>
     </form>
-    
+
     {% if result %}
         <h2>Result: {{ result }}</h2>
         {% if weather %}
@@ -26,7 +26,7 @@
             <p>Wind Speed: {{ weather.wind.speed }} m/s</p>
         {% endif %}
     {% endif %}
-    
+
     {% if error %}
         <h2 style="color: red;">Error: {{ error }}</h2>
     {% endif %}

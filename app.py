@@ -14,7 +14,7 @@ model = pickle.load(open("models/disaster_model.pkl", "rb"))
 # OpenWeatherMap API configuration
 API_KEY = "9bed7bfeae6e8e77c532681df90d03a3"
 BASE_URL = "http://api.openweathermap.org/data/2.5/weather"
-TOMTOM_API_KEY = "f6693714-24b0-4ed6-b1cc-07b2ad279a3b"
+TOMTOM_API_KEY = "SVLmcANzrQXSpr0ZtisxursNkKxOErNA"
 
 @app.route("/")
 def index():
